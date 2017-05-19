@@ -1,0 +1,54 @@
+{
+  "name": "frontend-build-boilerplate-with-npm-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "babel": {
+    "presets": [
+      "latest"
+    ]
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "scripts": {
+    "start": "npm run watch",
+    "css:sass": "node-sass ./src/css --output ./",
+    "css:prefix": "postcss --use autoprefixer -b 'last 2 versions' ./style.css -d ./",
+    "scripts:lint": "eslint ./src/scripts/*.js",
+    "prebuild:scripts": "npm run scripts:lint",
+    "build:css": "npm-run-all -s css:sass css:prefix",
+    "build:scripts": "browserify ./src/scripts/app.js -d | exorcist ./dist/scripts/bundle.js.map > ./dist/scripts/bundle.js",
+    "build": "npm-run-all -s build:*",
+    "watch:css": "watch 'npm run build:css' ./src/css",
+    "watch:scripts": "watchify ./src/scripts/app.js -v -o 'exorcist ./dist/scripts/bundle.js.map > ./dist/scripts/bundle.js' -d",
+    "watch": "npm-run-all -p scripts:lint watch:*",
+    "release:clean": "trash ./dist",
+    "release:mkdir": "mkdirp ./dist",
+    "release:css": "node-sass ./src/css --output ./",
+    "release:scripts": "browserify ./src/scripts/app.js -d | uglifyjs > ./dist/bundle.js",
+    "release": "npm-run-all -s release:mkdir release:clean release:mkdir release:css release:scripts"
+  },
+  "author": "Glatch",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.7.6",
+    "babel-preset-latest": "^6.22.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.1.0",
+    "cssnano": "^3.10.0",
+    "eslint": "^3.17.1",
+    "exorcist": "^0.4.0",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.5.0",
+    "npm-run-all": "^4.0.2",
+    "postcss": "^5.2.15",
+    "postcss-cli": "^3.0.0-beta",
+    "trash": "^4.0.0",
+    "uglify-js": "^2.8.7",
+    "watch": "^1.0.2",
+    "watchify": "^3.9.0"
+  }
+}
