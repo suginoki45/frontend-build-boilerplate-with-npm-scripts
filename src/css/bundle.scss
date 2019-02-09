@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+.test {
+  margin: 10px;
+  transform: rotate(15deg);
+  &.is-active {
+    color: red;
+  }
+}
