@@ -10,6 +10,7 @@
     "clean:js": "rimraf dist/js && mkdir -p dist/js",
     "css:sass": "node-sass --include-path scss ./src/css/bundle.scss ./dist/css/bundle.css --output-style compressed",
     "css:prefix": "postcss ./dist/css/bundle.css --use autoprefixer -d ./dist/css",
+    "js:babel": "babel ./src/js -d ./dist/js",
     "js:uglify": "uglifyjs ./dist/js/bundle.js --compress --output ./dist/js/bundle.js",
     "build:clean": "npm-run-all -s clean:*",
     "build:css": "npm-run-all -s css:*",
@@ -22,6 +23,9 @@
   "author": "Glatch",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "autoprefixer": "^9.5.1",
     "browser-sync": "^2.26.5",
     "eslint": "^5.16.0",
