@@ -1,5 +1,5 @@
 {
-  "name": "npm-scripts-boilerplate",
+  "name": "static-site-starter-npm-scripts",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "npm run watch",
-    "server": "node server.js",
+    "browsersync": "browser-sync start --server --files './*.html' '**/*'",
     "styles:sass": "node-sass --include-path scss ./src/css/bundle.scss ./dist/css/bundle.css --output-style compressed",
     "styles:prefix": "postcss ./dist/css/bundle.css --use autoprefixer -d ./dist/css",
     "build:imagemin": "node imagemin.js",
