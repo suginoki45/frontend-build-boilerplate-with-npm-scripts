@@ -21,7 +21,7 @@
     "watch:css": "watch 'npm run build:css' ./src/css",
     "watch:js": "watch 'npm run build:js' ./src/js",
     "watch": "watch 'npm-run-all -p watch:*'",
-    "release:clean": "trash ./dist",
+    "release:clean": "rimraf ./dist",
     "release:mkdir": "mkdirp ./dist",
     "release:css": "node-sass ./src/css --output ./",
     "release:js": "uglifyjs ./src/js/bundle.js -c -o ./dist",
