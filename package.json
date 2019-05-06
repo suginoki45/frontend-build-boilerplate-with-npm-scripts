@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "babel": {
-    "presets": [
-      "latest"
-    ]
-  },
   "scripts": {
     "start": "npm run watch",
     "browsersync": "browser-sync start --server --files './*.html' '**/*'",
@@ -15,17 +10,14 @@
     "clean:js": "rimraf dist/js && mkdir -p dist/js",
     "css:sass": "node-sass --include-path scss ./src/css/bundle.scss ./dist/css/bundle.css --output-style compressed",
     "css:prefix": "postcss ./dist/css/bundle.css --use autoprefixer -d ./dist/css",
+    "js:uglify": "uglifyjs ./dist/js/bundle.js --compress --output ./dist/js/bundle.js",
+    "build:clean": "npm-run-all -s clean:*",
     "build:css": "npm-run-all -s css:*",
-    "build:js": "uglifyjs ./src/js/bundle.js -c -o ./dist",
+    "build:js": "npm-run-all -s js:*",
     "build": "npm-run-all -s build:*",
     "watch:css": "watch 'npm run build:css' ./src/css",
     "watch:js": "watch 'npm run build:js' ./src/js",
-    "watch": "watch 'npm-run-all -p watch:*'",
-    "release:clean": "rimraf ./dist",
-    "release:mkdir": "mkdirp ./dist",
-    "release:css": "node-sass ./src/css --output ./",
-    "release:js": "uglifyjs ./src/js/bundle.js -c -o ./dist",
-    "release": "npm-run-all -s release:mkdir release:clean release:css release:js"
+    "watch": "watch 'npm-run-all -p watch:*'"
   },
   "author": "Glatch",
   "license": "ISC",
