@@ -11,6 +11,8 @@
   "scripts": {
     "start": "npm run watch",
     "browsersync": "browser-sync start --server --files './*.html' '**/*'",
+    "clean:css": "rimraf dist/css && mkdir -p dist/css",
+    "clean:js": "rimraf dist/js && mkdir -p dist/js",
     "styles:sass": "node-sass --include-path scss ./src/css/bundle.scss ./dist/css/bundle.css --output-style compressed",
     "styles:prefix": "postcss ./dist/css/bundle.css --use autoprefixer -d ./dist/css",
     "build:imagemin": "node imagemin.js",
@@ -47,6 +49,7 @@
     "postcss-cli": "^6.1.2",
     "prettier": "^1.17.0",
     "prettier-stylelint": "^0.4.2",
+    "rimraf": "^2.6.3",
     "stylelint-config-standard": "^18.3.0",
     "uglify-js": "^3.5.10",
     "watch": "^1.0.2"
