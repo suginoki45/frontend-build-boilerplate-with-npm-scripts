@@ -17,7 +17,7 @@
     "watch:sass": "node-sass --output-style nested --source-map true --watch ./src/css/bundle.scss ./dist/css/bundle.css",
     "watch:prefix": "postcss ./dist/css/bundle.css --use autoprefixer --dir ./dist/css --watch",
     "watch:babel": "babel ./src/js/bundle.js --out-dir ./dist/js --watch",
-    "watch": "npm run watch:sass & npm run watch:prefix & npm run watch:babel"
+    "watch": "npm run browsersync & npm run watch:sass & npm run watch:prefix & npm run watch:babel"
   },
   "author": "Glatch",
   "license": "ISC",
