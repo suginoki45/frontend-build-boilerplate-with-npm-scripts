@@ -1,9 +1,11 @@
 @charset "utf-8";
 
+h1 {
+  color: #ccc;
+  font-size: 2rem;
+}
+
 .test {
-  margin: 10px;
-  transform: rotate(15deg);
-  &.is-active {
-    color: red;
-  }
+  display: grid;
+  transform: translate(10px);
 }

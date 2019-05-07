@@ -1,3 +1,5 @@
-const test = () => {
-  console.log('test');
+const test = message => {
+  console.log(message);
 };
+
+test('test');
