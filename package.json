@@ -5,7 +5,6 @@
   "main": "app.js",
   "scripts": {
     "start": "npm run watch",
-    "browsersync": "browser-sync start --server --files './*.html' '**/*'",
     "clean:css": "rimraf dist/css && mkdir -p dist/css",
     "clean:js": "rimraf dist/js && mkdir -p dist/js",
     "build:clean": "npm-run-all -s clean:*",
@@ -14,10 +13,11 @@
     "build:babel": "babel ./src/js/bundle.js --out-dir ./dist/js",
     "build:uglify": "uglifyjs ./dist/js/bundle.js --compress --output ./dist/js/bundle.js",
     "build": "npm-run-all -s build:*",
-    "watch:sass": "node-sass --output-style nested --source-map true --watch ./src/css/bundle.scss ./dist/css/bundle.css",
-    "watch:prefix": "postcss ./dist/css/bundle.css --use autoprefixer --dir ./dist/css --watch",
-    "watch:babel": "babel ./src/js/bundle.js --out-dir ./dist/js --watch",
-    "watch": "npm run browsersync & npm run watch:sass & npm run watch:prefix & npm run watch:babel"
+    "watch:browsersync": "browser-sync start --server --files './*.html' './src'",
+    "watch:sass": "watch 'node-sass --output-style nested --source-map true ./src/css/bundle.scss ./dist/css/bundle.css' ./src/css",
+    "watch:prefix": "watch 'postcss ./dist/css/bundle.css --use autoprefixer --dir ./dist/css' ./dist/css",
+    "watch:babel": "watch 'babel ./src/js/bundle.js --out-dir ./dist/js' ./dist/js",
+    "watch": "npm-run-all -p watch:*"
   },
   "author": "Glatch",
   "license": "ISC",
@@ -38,7 +38,9 @@
     "prettier": "^1.17.0",
     "prettier-stylelint": "^0.4.2",
     "rimraf": "^2.6.3",
-    "stylelint-config-standard": "^18.3.0",
-    "uglify-js": "^3.5.10"
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-scss": "^3.6.1",
+    "uglify-js": "^3.5.10",
+    "watch": "^1.0.2"
   }
 }
